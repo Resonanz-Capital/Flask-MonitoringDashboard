@@ -8,8 +8,8 @@ def test_get_group_by_function(config):
 
 
 def test_get_group_by_tuple(config):
-    config.group_by = (lambda: 'User', lambda: 3.0)
-    assert get_group_by() == '(User,3.0)'
+    config.group_by = (lambda: 'MonitoringUser', lambda: 3.0)
+    assert get_group_by() == '(MonitoringUser,3.0)'
 
 
 def test_get_group_by_function_in_function(config):

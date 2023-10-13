@@ -5,7 +5,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from flask_monitoringdashboard import blueprint, config
 from flask_monitoringdashboard.core.auth import on_logout, on_login, secure, is_admin, admin_secure
-from flask_monitoringdashboard.database import session_scope, User
+from flask_monitoringdashboard.database import session_scope, MonitoringUser
 from flask_monitoringdashboard.database.auth import get_user, get_all_users
 
 MAIN_PAGE = config.blueprint_name + '.index'
@@ -67,7 +67,7 @@ def user_delete():
     if flask.session.get(config.link + '_user_id') == user_id:
         return jsonify({'message': 'Cannot delete itself.'}), BAD_REQUEST_STATUS
     with session_scope() as session:
-        session.query(User).filter(User.id == user_id).delete()
+        session.query(MonitoringUser).filter(MonitoringUser.id == user_id).delete()
     return 'OK'
 
 
@@ -85,7 +85,7 @@ def user_create():
 
     with session_scope() as session:
         try:
-            user = User(username=username, is_admin=is_admin)
+            user = MonitoringUser(username=username, is_admin=is_admin)
             user.set_password(password=password)
             session.add(user)
             session.commit()
@@ -107,7 +107,7 @@ def user_edit():
 
     with session_scope() as session:
         try:
-            user = session.query(User).filter(User.id == user_id).one()
+            user = session.query(MonitoringUser).filter(MonitoringUser.id == user_id).one()
             user.is_admin = is_admin
 
             old_password = request.form.get('old_password')

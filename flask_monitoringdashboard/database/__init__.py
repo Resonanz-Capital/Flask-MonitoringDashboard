@@ -33,10 +33,10 @@ from flask_monitoringdashboard import config
 Base = declarative_base()
 
 
-class User(Base):
+class MonitoringUser(Base):
     """Table for storing user management."""
 
-    __tablename__ = '{}User'.format(config.table_prefix)
+    __tablename__ = '{}MonitoringUser'.format(config.table_prefix)
 
     id = Column(Integer, primary_key=True)
 

@@ -1,4 +1,4 @@
-from flask_monitoringdashboard.database import User, session_scope
+from flask_monitoringdashboard.database import MonitoringUser, session_scope
 from flask_monitoringdashboard import config
 
 
@@ -7,12 +7,12 @@ def get_user(username, password):
     In case the User-table is empty, a user with default credentials is added.
     """
     with session_scope() as session:
-        if session.query(User).count() == 0:
-            user = User(username=config.username, is_admin=True)
+        if session.query(MonitoringUser).count() == 0:
+            user = MonitoringUser(username=config.username, is_admin=True)
             user.set_password(password=config.password)
             session.add(user)
 
-        user = session.query(User).filter(User.username == username).one_or_none()
+        user = session.query(MonitoringUser).filter(MonitoringUser.username == username).one_or_none()
         if user is not None:
             if user.check_password(password=password):
                 session.expunge_all()
@@ -22,7 +22,7 @@ def get_user(username, password):
 
 
 def get_all_users(session):
-    users = session.query(User).order_by(User.id).all()
+    users = session.query(MonitoringUser).order_by(MonitoringUser.id).all()
 
     return [
         {

@@ -91,17 +91,17 @@ that endpoint. The following data is recorded:
   +=============================================================================================+================================+
   | dashboard.config.group_by = lambda: 3                                                       | 3                              |
   +---------------------------------------------------------------------------------------------+--------------------------------+
-  | dashboard.config.group_by = lambda: ('User', 3)                                             | (User,3)                       |
+  | dashboard.config.group_by = lambda: ('MonitoringUser', 3)                                             | (MonitoringUser,3)                       |
   +---------------------------------------------------------------------------------------------+--------------------------------+
   | dashboard.config.group_by = lambda: lambda: 3                                               | 3                              |
   +---------------------------------------------------------------------------------------------+--------------------------------+
-  | dashboard.config.group_by = ('User', lambda: 3)                                             | (User,3)                       |
+  | dashboard.config.group_by = ('MonitoringUser', lambda: 3)                                             | (MonitoringUser,3)                       |
   +---------------------------------------------------------------------------------------------+--------------------------------+
   | dashboard.config.group_by = lambda: 'username'                                              | username                       |
   +---------------------------------------------------------------------------------------------+--------------------------------+
   | dashboard.config.group_by = lambda: ['Username', 'username']                                | (Username,username)            |
   +---------------------------------------------------------------------------------------------+--------------------------------+
-  | dashboard.config.group_by = lambda: [('User', lambda: 3), ('Username', lambda: 'username')] | ((User,3),(Username,username)) |
+  | dashboard.config.group_by = lambda: [('MonitoringUser', lambda: 3), ('Username', lambda: 'username')] | ((MonitoringUser,3),(Username,username)) |
   +---------------------------------------------------------------------------------------------+--------------------------------+
 
 - **IP:** The IP-address from which the request is made. The IP is retrieved by the following code:

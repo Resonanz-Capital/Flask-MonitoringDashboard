@@ -16,14 +16,14 @@ from flask_monitoringdashboard.database import (
     StackLine,
     CustomGraph,
     CustomGraphData,
-    User,
+    MonitoringUser,
 )
 from tests.fixtures.database import ModelFactory
 
 
 class UserFactory(ModelFactory):
     class Meta:
-        model = User
+        model = MonitoringUser
     username = factory.LazyFunction(lambda: str(uuid.uuid4()))
     password_hash = factory.LazyFunction(lambda: str(uuid.uuid4()))
     is_admin = True
